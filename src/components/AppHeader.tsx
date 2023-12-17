@@ -11,7 +11,7 @@ export const AppHeader = ({ cardsAmount }: AppHeaderProps) => (
 		<header className={styles.header}>
 			<p className={styles.logo}>
 				<Logo />
-				Cards:<span>1</span>
+				Cards:<span>{cardsAmount}</span>
 			</p>
 			<button className={styles.buttonIcon}>
 				<p className={styles.plusIcon}>
