@@ -2,11 +2,15 @@ import styles from './AppHeader.module.css';
 import { Logo } from './icons/Logo';
 import { PlusIcon } from './icons/plusIcon';
 
-export const AppHeader = () => (
+interface AppHeaderProps {
+	cardsAmount: number;
+}
+
+export const AppHeader = ({ cardsAmount }: AppHeaderProps) => (
 	<>
 		<header className={styles.header}>
 			<p className={styles.logo}>
-			<Logo />
+				<Logo />
 				Cards:<span>1</span>
 			</p>
 			<button className={styles.buttonIcon}>
