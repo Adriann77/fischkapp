@@ -1,9 +1,20 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--white: #ffffff;
+	--background: #f1f2f3;
+	--accent: #161616;
+	--typo: #b6b6b6;
+	--border: #ebebec;
 }
 
 body {
-  background: #373737;
+	background: #373737;
+	font-family: 'Lexend';
 }
+
+
