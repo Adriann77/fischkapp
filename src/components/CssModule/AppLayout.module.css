@@ -1,0 +1,16 @@
+.layout {
+  max-width: 375px;
+  min-height: 755px;
+  margin: 0 auto;
+  background: #f1f2f3;
+  display: flex;
+  align-items: center;
+  padding-top: 75px;
+  padding-bottom: 21px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  z-index: -1;
+  gap: 21px;
+}
+
+

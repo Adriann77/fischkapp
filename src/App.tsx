@@ -1,14 +1,59 @@
-import { AppHeader } from "./components/AppHeader";
-import { AppLayout } from "./components/AppLayout";
+import { AppHeader } from './components/AppHeader';
+import { AppLayout } from './components/AppLayout';
+import './App.css';
+import React, { useState } from 'react';
+import { NewCard } from './components/NewCard';
+import { CardsList } from './components/CardsList';
 
-import "./App.css";
+const initialCards = [
+	{ heading: 'tytul', answer: 'costamn', id: 1 },
+	{ heading: 'tytul', answer: 'costamn', id: 2 },
+];
+
+
 
 function App() {
-  return (
-    <AppLayout>
-      <AppHeader cardsAmount={1}/>
-    </AppLayout>
-  );
+	const [newCard, setNewCard] = useState(false);
+	const [val, setVal] = useState(0);
+	const [cards, setCards] = useState(initialCards);
+
+	function createNewCard() {
+		{
+
+			setNewCard(true);
+		}
+	}
+
+	function resetHandler() {
+		setNewCard(false);
+	}
+
+	return (
+		<>
+			<AppLayout>
+				<AppHeader
+					createNewCard={createNewCard}
+					num={val === 0 ? initialCards.length : val}
+				/>
+
+				{newCard && (
+					<NewCard
+						onSaveClick={(heading: any, answer: any) => {
+							setCards(prevCards => {
+								return [{ heading, answer, id: cards.length + 1 }, ...prevCards];
+								
+							});
+							setVal(cards.length+1);
+						}}
+						checker={newCard}
+						reset={resetHandler}
+					/>
+				)}
+
+				<CardsList cards={cards} />
+			</AppLayout>
+		</>
+	);
 }
 
 export default App;
