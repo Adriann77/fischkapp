@@ -1,15 +1,13 @@
 import React from 'react';
-import styles from './CssModule/NewCard.module.css';
+import styles from './CssModule/NewCard.module.scss';
 import { useState } from 'react';
 import { Trash } from './icons/Trash';
-
 
 interface Props {
 	checker: boolean;
 	reset: any;
 	onSaveClick: any;
 }
-
 
 export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
 	const [inputValue, setInputValue] = useState('');
@@ -18,10 +16,10 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
 	const [showError, setShowError] = useState(false);
 	const [firstStep, setFirstStep] = useState(checker);
 
-	const handleInputChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value);
 	};
-	const handleTextInputChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+	const handleTextInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setTextInputValue(event.target.value);
 	};
 
@@ -52,9 +50,7 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
 			const heading = inputValue;
 			const answer = textInputValue;
 
-			
-
-			onSaveClick(heading, answer)
+			onSaveClick(heading, answer);
 		}
 	};
 

@@ -10,8 +10,6 @@ const initialCards = [
 	{ heading: 'tytul', answer: 'costamn', id: 2 },
 ];
 
-
-
 function App() {
 	const [newCard, setNewCard] = useState(false);
 	const [val, setVal] = useState(0);
@@ -19,7 +17,6 @@ function App() {
 
 	function createNewCard() {
 		{
-
 			setNewCard(true);
 		}
 	}
@@ -41,9 +38,8 @@ function App() {
 						onSaveClick={(heading: any, answer: any) => {
 							setCards(prevCards => {
 								return [{ heading, answer, id: cards.length + 1 }, ...prevCards];
-								
 							});
-							setVal(cards.length+1);
+							setVal(cards.length + 1);
 						}}
 						checker={newCard}
 						reset={resetHandler}
