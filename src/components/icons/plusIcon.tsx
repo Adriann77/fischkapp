@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 export const PlusIcon = () => {
-  return (
+	const svgStyles = {
+		position: 'absolute',
+		
+		transform: 'translate(-50%, -50%)',
+	};
+
+	return (
 		<svg
+			style={svgStyles}
 			xmlns='http://www.w3.org/2000/svg'
 			width='24'
 			height='24'
@@ -11,13 +18,13 @@ export const PlusIcon = () => {
 			<path
 				d='M17 12H7'
 				stroke='white'
-				stroke-linecap='round'
+				strokeLinecap='round'
 			/>
 			<path
 				d='M12 17V7'
 				stroke='white'
-				stroke-linecap='round'
+				strokeLinecap='round'
 			/>
 		</svg>
 	);
-}
+};
