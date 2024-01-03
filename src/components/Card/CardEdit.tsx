@@ -23,27 +23,29 @@ export const CardEdit = ({
   deleteCard,
 }: Props) => {
   return (
-    <div className={styles.rectangle}>
-      <button className={styles.buttonTrash}>
-        <Trash deleteCard={deleteCard} />
-      </button>
-      <p className={styles.headingTitle}>{inputValue}</p>
-      <input
-        onChange={handleAnswerInputChange}
-        type="text"
-        value={answerInputValue}
-      />
-      {showError && (
-        <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>
-      )}
-      <div className={styles.buttons}>
-        <button onClick={cancelChanges} className={styles.buttonCardOne}>
-          Cancel
-        </button>
-        <button onClick={submitChanges} className={styles.buttonCardSecond}>
-          Save
-        </button>
-      </div>
-    </div>
-  );
+		<div className={styles.rectangle}>
+			<button className={styles.buttonTrash}>
+				<Trash deleteCard={deleteCard} />
+			</button>
+			<p className={styles.headingTitle}>{inputValue}</p>
+			<input
+				onChange={handleAnswerInputChange}
+				type='text'
+				value={answerInputValue}
+			/>
+			{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
+			<div className={styles.buttons}>
+				<button
+					onClick={cancelChanges}
+					className={styles.buttonCardOne}>
+					Cancel
+				</button>
+				<button
+					onClick={submitChanges}
+					className={styles.buttonCardSecond}>
+					Save
+				</button>
+			</div>
+		</div>
+	);
 };
