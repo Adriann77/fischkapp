@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './CssModule/AppHeader.module.scss';
 import { Logo } from './icons/Logo';
 import { PlusIcon } from './icons/plusIcon';
-import { NewCard } from './NewCard';
+import { NewCard } from './NewCard/NewCard';
 
 interface Props {
 	createNewCard: () => void;

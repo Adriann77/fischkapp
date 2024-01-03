@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './CssModule/NewCard.module.scss';
 import { useState } from 'react';
-import { Trash } from './icons/Trash';
+import { NewCardFirstStep } from './NewCardFirstStep';
+import { NewCardSecondStep } from './NewCardSecondStep';
 
 interface Props {
 	checker: boolean;
-	reset: any;
-	onSaveClick: any;
+	reset: () => void;
+	onSaveClick: (heading: string, answer: string) => void;
 }
 
 export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
@@ -57,54 +57,24 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
 	return (
 		<>
 			{firstStep && (
-				<div className={styles.rectangle}>
-					<input
-						value={inputValue}
-						onChange={handleInputChange}
-						type='text'
-					/>
-					{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
-					<div className={styles.buttons}>
-						<button
-							onClick={reset}
-							className={styles.buttonCardOne}>
-							Cancel
-						</button>
-						<button
-							onClick={checkInput}
-							className={styles.buttonCardSecond}>
-							Next
-						</button>
-					</div>
-				</div>
+				<NewCardFirstStep
+					inputValue={inputValue}
+					handleInputChange={handleInputChange}
+					reset={reset}
+					showError={showError}
+					checkInput={checkInput}
+				/>
 			)}
 			{secondStep && (
-				<div className={styles.rectangle}>
-					<p className={styles.headingTitle}>{inputValue}</p>
-					<input
-						value={textInputValue}
-						onChange={handleTextInputChange}
-						type='text'
-					/>
-					{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
-					<div className={styles.buttons}>
-						<button
-							onClick={backToFirstStep}
-							className={styles.buttonCardOne}>
-							Back
-						</button>
-						<button
-							onClick={checkTextInput}
-							className={styles.buttonCardSecond}>
-							Save
-						</button>
-					</div>
-					<button
-						onClick={reset}
-						className={styles.buttonTrash}>
-						<Trash />
-					</button>
-				</div>
+				<NewCardSecondStep
+					inputValue={inputValue}
+					textInputValue={textInputValue}
+					handleTextInputChange={handleTextInputChange}
+					showError={showError}
+					backToFirstStep={backToFirstStep}
+					checkTextInput={checkTextInput}
+					reset={reset}
+				/>
 			)}
 		</>
 	);

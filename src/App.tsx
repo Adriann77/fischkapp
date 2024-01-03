@@ -2,12 +2,12 @@ import { AppHeader } from './components/AppHeader';
 import { AppLayout } from './components/AppLayout';
 import './App.css';
 import React, { useState } from 'react';
-import { NewCard } from './components/NewCard';
+import { NewCard } from './components/NewCard/NewCard';
 import { CardsList } from './components/CardsList';
 
 const initialCards = [
 	{ heading: 'tytul', answer: 'costamn', id: 1 },
-	{ heading: 'tytul', answer: 'costamn', id: 2 },
+	{ heading: 'lutyt', answer: 'nmatsoc', id: 2 },
 ];
 
 function App() {
@@ -25,6 +25,17 @@ function App() {
 		setNewCard(false);
 	}
 
+	function updateCards(newHeader: string, newAnswer: string, cardId: number) {
+		setCards(prevCards =>
+			prevCards.map(card => {
+				if (card.id === cardId) {
+					return { ...card, heading: newHeader, answer: newAnswer };
+				}
+				return card;
+			}),
+		);
+	}
+
 	return (
 		<>
 			<AppLayout>
@@ -35,7 +46,7 @@ function App() {
 
 				{newCard && (
 					<NewCard
-						onSaveClick={(heading: any, answer: any) => {
+						onSaveClick={(heading, answer) => {
 							setCards(prevCards => {
 								return [{ heading, answer, id: cards.length + 1 }, ...prevCards];
 							});
@@ -46,7 +57,10 @@ function App() {
 					/>
 				)}
 
-				<CardsList cards={cards} />
+				<CardsList
+					card={cards}
+					updateCards={updateCards}
+				/>
 			</AppLayout>
 		</>
 	);
