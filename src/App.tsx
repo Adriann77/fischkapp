@@ -4,6 +4,7 @@ import "./App.css";
 import React, { useState } from "react";
 import { NewCard } from "./components/NewCard/NewCard";
 import { CardsList } from "./components/CardsList";
+import { v4 as uuidv4 } from "uuid";
 
 const initialCards = [
   { heading: "tytul", answer: "costamn", id: 1 },
@@ -50,7 +51,7 @@ function App() {
           <NewCard
             onSaveClick={(heading, answer) => {
               setCards((prevCards) => {
-                return [{ heading, answer, id: Math.random() }, ...prevCards];
+                return [{ heading, answer, id: uuidv4() }, ...prevCards];
               });
               setVal((prevVal) => prevVal + 1);
             }}
