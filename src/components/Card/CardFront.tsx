@@ -22,7 +22,7 @@ export const CardFront = ({
       onClick={() => {
         setFlipCard(!flipCard);
       }}
-      className={`${styles.rectangle} ${flipCard ? styles.back : styles.front}`}
+      className={`${styles.rectangle} ${flipCard ? styles.flip : styles.flipBack}`}
     >
       <button onClick={editCard} className={styles.buttonTrash}>
         <Pencil />

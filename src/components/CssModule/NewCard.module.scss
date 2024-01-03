@@ -1,120 +1,181 @@
 .rectangle {
-  position: relative;
-  width: 343px;
-  min-height: 188px;
-  border: 15px;
-  align-items: center;
-  border-radius: 15px;
-  border: 1px solid var(--Border, #ebebec);
-  background: var(--White, #fff);
-  display: flex;
-  flex-direction: column;
-  margin-bottom: -8px;
-  overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 343px;
+	min-height: 188px;
+	margin-bottom: -8px;
+	border: 15px;
+	border-radius: 15px;
+	background: var(--White, #fff);
+	border: 1px solid var(--Border, #ebebec);
+	flex-direction: column;
+	overflow: hidden;
+	transition: transform 1s;
+
+	.buttonTrash {
+		position: absolute;
+		top: 0;
+		right: 0;
+		border: none;
+		cursor: pointer;
+		background-color: #fff;
+	}
 }
 
-input {
-  margin-top: 50px;
-  padding: 10px;
-  width: 315px;
-  height: 40px;
-  border: 1px solid var(--Border, #ebebec);
-  color: var(--accent);
-  font-size: 16px;
-  font-weight: 500;
+.flip{
+  .buttonTrash{
+    transition: opacity .5s;
+    opacity: 0;
+  }
 }
+
+.flipBack{
+  .buttonTrash{
+    opacity: 1;
+    transition: opacity .5s;
+  }
+}
+
+
+
+input {
+	margin-top: 50px;
+	padding: 10px;
+	width: 315px;
+	height: 40px;
+	border: 1px solid var(--Border, #ebebec);
+	color: var(--accent);
+	font-size: 16px;
+	font-weight: 500;
+}
+
 .buttons {
-  position: absolute;
-  display: flex;
-  justify-content: end;
-  align-content: end;
-  margin-top: 136px;
-  margin-left: 102px;
+	position: absolute;
+	display: flex;
+	justify-content: end;
+	align-content: end;
+	margin-top: 136px;
+	margin-left: 102px;
 }
 
 .buttonCardOne,
 .buttonCardSecond {
-  display: flex;
-  width: 110px;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 22px;
-  cursor: pointer;
-  border: none;
+	display: flex;
+	width: 110px;
+	padding: 10px 12px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border-radius: 22px;
+	cursor: pointer;
+	border: none;
 }
 
 .buttonCardOne {
-  background: var(--White, #fff);
+	background: var(--White, #fff);
 }
 
 .buttonCardSecond {
-  color: var(--white);
-  background: var(--accent);
-}
-
-.buttonTrash {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
+	color: var(--white);
+	background: var(--accent);
 }
 
 .headingTitle {
-  color: var(--Accent, #161616);
-  font-family: Lexend;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  top: 28px;
-  left: 15px;
+	color: var(--Accent, #161616);
+	font-family: Lexend;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	position: absolute;
+	top: 28px;
+	left: 15px;
 }
 
 .errorParaph {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
 }
 
-.inputError {
-  border: 2px solid red;
-}
+// .flip {
+// 	position: relative;
+// 	transition: transform 1s;
+// 	transform: rotateY(180deg);
 
-.front,
-.back {
-  align-items: center;
-  justify-content: center;
-  display: flex;
+// 	.text {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+    
 
-  .text {
-    padding: 20px;
-    margin-top: 15px;
-  }
-}
+// 		.answer {
+//       transition: opacity 1s ;
+// 			opacity: 0;
+// 		}
 
-.front {
-  .answer {
-    opacity: 0;
-    display: none;
-  }
+// 		.heading {
+//       transition: opacity 1s 1s;
+// 			opacity: 1;
+//       transform: rotateY(180deg) translate(-50%);
+// 		}
+// 	}
+// }
+// .text {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: relative;
+//   line-height: 188px;
 
-  .heading {
-    opacity: 1;
-  }
-}
+// 	.answer {
+//     transition: opacity 1s 1s;
+// 		opacity: 1;
+// 	}
 
-.back {
-  .answer {
-    opacity: 1;
-  }
+// 	.heading {
+//     transition: opacity 1s ;
+// 		opacity: 0;
+// 	}
+// }
 
-  .heading {
-    opacity: 0;
-    display: none;
-  }
-}
+// .front,
+// .back {
+//   align-items: center;
+//   justify-content: center;
+//   display: flex;
+
+//   .text {
+//     padding: 20px;
+//     margin-top: 15px;
+//   }
+// }
+
+// .front {
+//   perspective: 1000px;
+//   transition: transform 1s;
+//   transform: rotateY(180deg);
+//   .answer {
+//     opacity: 0;
+//     display: none;
+//   }
+
+//   .heading {
+//     opacity: 1;
+//   }
+// }
+
+// .back {
+
+//   transition: transform 1s;
+
+//   .answer {
+//     opacity: 1;
+//   }
+
+//   .heading {
+//     opacity: 0;
+//     display: none;
+//   }
+// }
