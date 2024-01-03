@@ -1,5 +1,6 @@
 import { Key } from 'react';
 import { Cards } from './Cards';
+import React, { useState } from 'react';
 
 interface Card {
 	id: number;

@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 export const PlusIcon = () => {
-	const svgStyles = {
+	const svgStyles: CSSProperties = {
 		position: 'absolute',
-		
 		transform: 'translate(-50%, -50%)',
 	};
 

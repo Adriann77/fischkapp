@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 export const Logo = () => {
-  return (
+	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			width='34'
@@ -20,4 +20,4 @@ export const Logo = () => {
 			/>
 		</svg>
 	);
-}
+};

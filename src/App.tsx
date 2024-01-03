@@ -7,7 +7,7 @@ import { CardsList } from './components/CardsList';
 
 const initialCards = [
 	{ heading: 'tytul', answer: 'costamn', id: 1 },
-	{ heading: 'tytul', answer: 'costamn', id: 2 },
+	{ heading: 'lutyt', answer: 'nmatsoc', id: 2 },
 ];
 
 function App() {
