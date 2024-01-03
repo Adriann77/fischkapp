@@ -1,6 +1,10 @@
 import React from "react";
 
-export const Trash = () => {
+interface Props {
+  deleteCard?: () => void;
+}
+
+export const Trash = ({ deleteCard }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +12,7 @@ export const Trash = () => {
       height="40"
       viewBox="0 0 40 40"
       fill="none"
+      onClick={deleteCard}
     >
       <path d="M25 15.5H15" stroke="#161616" strokeLinecap="round" />
       <path d="M22 15H18" stroke="#161616" strokeLinecap="round" />
