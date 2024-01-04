@@ -4,7 +4,7 @@ import { Trash } from "../icons/Trash";
 
 interface Props {
   editCard: () => void;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   inputValue: string;
   cancelChanges: () => void;
   submitChanges: () => void;
@@ -26,7 +26,9 @@ export const FlippedCardEdit = ({
       <button onClick={deleteCard} className={styles.buttonTrash}>
         <Trash />
       </button>
-      <input onChange={handleInputChange} type="text" value={inputValue} />
+      <div className={styles.formContainerSingle}>
+        <textarea onChange={handleInputChange} value={inputValue} />
+      </div>
       {showError && (
         <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>
       )}

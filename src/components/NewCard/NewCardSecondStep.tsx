@@ -5,7 +5,9 @@ import { Trash } from "../icons/Trash";
 interface Props {
   inputValue: string;
   textInputValue: string;
-  handleTextInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleTextInputChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => void;
   showError: boolean;
   backToFirstStep: () => void;
   checkTextInput: () => void;
@@ -23,12 +25,10 @@ export const NewCardSecondStep = ({
 }: Props) => {
   return (
     <div className={styles.rectangle}>
-      <p className={styles.headingTitle}>{inputValue}</p>
-      <input
-        value={textInputValue}
-        onChange={handleTextInputChange}
-        type="text"
-      />
+      <div className={styles.formContainerDouble}>
+        <p className={styles.headingTitle}>{inputValue}</p>
+        <textarea value={textInputValue} onChange={handleTextInputChange} />
+      </div>
       {showError && (
         <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>
       )}

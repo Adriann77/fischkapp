@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CardFront } from "./CardFront";
-import { FlippedCardEdit } from "./FlippedCardEdit";
+import { FlippedCardEdit } from "./CardFrontEdit";
 import { CardEdit } from "./CardEdit";
 
 interface Props {
@@ -25,11 +25,11 @@ export const Card = ({
   const [flipCard, setFlipCard] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
   };
   const handleAnswerInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setAnswerInputValue(event.target.value);
   };
