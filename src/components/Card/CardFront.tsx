@@ -18,19 +18,42 @@ export const CardFront = ({
   setFlipCard,
 }: Props) => {
   return (
-    <div
-      onClick={() => {
-        setFlipCard(!flipCard);
-      }}
-      className={`${styles.rectangle} ${flipCard ? styles.back : styles.front}`}
-    >
-      <button onClick={editCard} className={styles.buttonTrash}>
-        <Pencil />
-      </button>
-      <div className={styles.text}>
-        <p className={styles.heading}>{inputValue}</p>
-        <p className={styles.answer}>{answerInputValue}</p>
-      </div>
-    </div>
+    <>
+      {!flipCard ? (
+        <div
+          onClick={() => {
+            setFlipCard(!flipCard);
+          }}
+          className={styles.cardFront}
+        >
+          <div className={`${styles.card} ${flipCard ? styles.flip : ""}`}>
+            <button onClick={editCard} className={styles.buttonTrash}>
+              <Pencil />
+            </button>
+            <div className={styles.text}>
+              <p className={styles.heading}>{inputValue}</p>
+              <p className={styles.answer}>{answerInputValue}</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div
+          onClick={() => {
+            setFlipCard(!flipCard);
+          }}
+          className={styles.cardBack}
+        >
+          <div className={`${styles.card} ${flipCard ? styles.flipBack : ""}`}>
+            <button onClick={editCard} className={styles.buttonTrash}>
+              <Pencil />
+            </button>
+            <div className={styles.text}>
+              <p className={styles.heading}>{inputValue}</p>
+              <p className={styles.answer}>{answerInputValue}</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

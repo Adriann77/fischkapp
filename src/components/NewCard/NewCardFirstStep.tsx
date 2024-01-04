@@ -3,7 +3,7 @@ import styles from "../CssModule/NewCard.module.scss";
 
 interface Props {
   inputValue: string;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   showError: boolean;
   reset: () => void;
   checkInput: () => void;
@@ -18,7 +18,9 @@ export const NewCardFirstStep = ({
 }: Props) => {
   return (
     <div className={styles.rectangle}>
-      <input value={inputValue} onChange={handleInputChange} type="text" />
+      <div className={styles.formContainerSingle}>
+        <textarea value={inputValue} onChange={handleInputChange} />
+      </div>
       {showError && (
         <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>
       )}

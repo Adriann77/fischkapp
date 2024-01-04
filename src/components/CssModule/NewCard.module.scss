@@ -1,35 +1,142 @@
-.rectangle {
+@mixin container {
   position: relative;
-  width: 343px;
-  min-height: 188px;
-  border: 15px;
-  align-items: center;
-  border-radius: 15px;
-  border: 1px solid var(--Border, #ebebec);
-  background: var(--White, #fff);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 343px;
+  min-height: 188px;
   margin-bottom: -8px;
+  border-radius: 15px;
+  background: var(--White, #fff);
+  border: 1px solid var(--Border, #ebebec);
   overflow: hidden;
 }
 
-input {
+@mixin buttonTrash {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+@mixin text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  word-wrap: break-word;
+  padding: 16px;
+  margin-top: 14px;
+  height: 100%;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.cardFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0) perspective(1000px);
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  @include container;
+  .buttonTrash {
+    @include buttonTrash;
+  }
+
+  .text {
+    @include text;
+    .answer {
+      display: none;
+      opacity: 0;
+    }
+  }
+}
+
+.cardBack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s ease;
+  transform: rotateY(180deg) perspective(1000px);
+  transform-style: preserve-3d;
+  @include container;
+
+  .buttonTrash {
+    @include buttonTrash;
+    transform: rotateY(180deg) translateX(300px);
+  }
+
+  .text {
+    @include text;
+    .heading {
+      transition: all 0.3s;
+
+      display: none;
+      opacity: 0;
+    }
+
+    .answer {
+      transform: rotateY(180deg);
+    }
+  }
+}
+
+.rectangle {
+  @include container;
+}
+
+.buttonTrash {
+  @include buttonTrash;
+}
+
+.formContainerSingle {
   margin-top: 50px;
-  padding: 10px;
+  margin-bottom: 88px;
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  flex-direction: column;
+  text-align: left;
+}
+.formContainerDouble {
+  margin-top: 28px;
+  margin-bottom: 87px;
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  flex-direction: column;
+  text-align: left;
+}
+
+textarea {
+  font-family: Lexend;
+
+  font-weight: 500;
+  resize: none;
   width: 315px;
   height: 40px;
-  border: 1px solid var(--Border, #ebebec);
+  word-wrap: break-word;
+  border: 1px solid #ebebec;
   color: var(--accent);
   font-size: 16px;
-  font-weight: 500;
+  text-align: left;
+  padding: 12px 10px 10px 10px;
+  overflow: hidden;
 }
+
 .buttons {
   position: absolute;
   display: flex;
   justify-content: end;
   align-content: end;
-  margin-top: 136px;
-  margin-left: 102px;
+  bottom: 14px;
+  right: 14px;
 }
 
 .buttonCardOne,
@@ -54,64 +161,30 @@ input {
   background: var(--accent);
 }
 
-.buttonTrash {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
+.editState {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
 }
 
 .headingTitle {
+  top: 28px;
+  left: 26px;
   color: var(--Accent, #161616);
   font-family: Lexend;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  top: 28px;
-  left: 15px;
 }
 
 .errorParaph {
+  position: absolute;
   color: red;
   font-size: 12px;
-  margin-top: 5px;
-}
 
 
-.front,
-.back {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-
-  .text {
-    padding: 20px;
-    margin-top: 15px;
-  }
-}
-
-.front {
-  .answer {
-    opacity: 0;
-    display: none;
-  }
-
-  .heading {
-    opacity: 1;
-  }
-}
-
-.back {
-  .answer {
-    opacity: 1;
-  }
-
-  .heading {
-    opacity: 0;
-    display: none;
-  }
+  top: 10px;
 }

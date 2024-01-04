@@ -16,11 +16,11 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
   const [showError, setShowError] = useState(false);
   const [firstStep, setFirstStep] = useState(checker);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
   };
   const handleTextInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setTextInputValue(event.target.value);
   };

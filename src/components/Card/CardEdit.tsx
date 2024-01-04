@@ -5,7 +5,9 @@ import { Trash } from "../icons/Trash";
 interface Props {
   editCard: () => void;
   inputValue: string;
-  handleAnswerInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleAnswerInputChange: (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => void;
   answerInputValue: string;
   cancelChanges: () => void;
   showError: boolean;
@@ -27,12 +29,10 @@ export const CardEdit = ({
       <button className={styles.buttonTrash} onClick={deleteCard}>
         <Trash />
       </button>
-      <p className={styles.headingTitle}>{inputValue}</p>
-      <input
-        onChange={handleAnswerInputChange}
-        type="text"
-        value={answerInputValue}
-      />
+      <div className={styles.formContainerDouble}>
+        <p className={styles.headingTitle}>{inputValue}</p>
+        <textarea onChange={handleAnswerInputChange} value={answerInputValue} />
+      </div>
       {showError && (
         <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>
       )}
