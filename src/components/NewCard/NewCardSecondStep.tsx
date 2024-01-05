@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../CssModule/NewCard.module.scss";
-import { Trash } from "../icons/Trash";
+import { Trash } from "../../../icons/Trash";
 
 interface Props {
   inputValue: string;

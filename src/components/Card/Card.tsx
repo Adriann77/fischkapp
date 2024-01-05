@@ -4,23 +4,17 @@ import { FlippedCardEdit } from "./CardFrontEdit";
 import { CardEdit } from "./CardEdit";
 
 interface Props {
-  heading: string;
-  answer: string;
+  front: string;
+  back: string;
   cardId: number;
   update: (heading: string, answer: string, cardId: number) => void;
   removeCard: (cardId: number) => void;
 }
 
-export const Card = ({
-  heading,
-  answer,
-  update,
-  cardId,
-  removeCard,
-}: Props) => {
+export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
   const [isEditCard, setIsEditCard] = useState(false);
-  const [inputValue, setInputValue] = useState(heading);
-  const [answerInputValue, setAnswerInputValue] = useState(answer);
+  const [inputValue, setInputValue] = useState(front);
+  const [answerInputValue, setAnswerInputValue] = useState(back);
 
   const [flipCard, setFlipCard] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -54,8 +48,8 @@ export const Card = ({
   };
   const cancelChanges = () => {
     setFlipCard(false);
-    setInputValue(heading);
-    setAnswerInputValue(answer);
+    setInputValue(front);
+    setAnswerInputValue(back);
     setIsEditCard(false);
     setShowError(false);
   };
@@ -66,8 +60,8 @@ export const Card = ({
         <CardFront
           flipCard={flipCard}
           editCard={editCard}
-          answerInputValue={answer}
-          inputValue={heading}
+          answerInputValue={front}
+          inputValue={back}
           setFlipCard={setFlipCard}
         />
       )}
@@ -92,7 +86,7 @@ export const Card = ({
               }}
               editCard={editCard}
               handleAnswerInputChange={handleAnswerInputChange}
-              inputValue={heading}
+              inputValue={front}
               cancelChanges={cancelChanges}
               submitChanges={submitChanges}
               showError={showError}
