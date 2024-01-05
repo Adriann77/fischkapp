@@ -3,9 +3,11 @@ import { Card } from "./Card/Card";
 import React from "react";
 
 interface Card {
-  id: number;
   heading: string;
   answer: string;
+  back: string;
+  front: string;
+  _id: number;
 }
 
 interface Props {
@@ -26,10 +28,10 @@ export const CardsList = ({ card, updateCards, removeCard }: Props) => {
           removeCard(cardId);
         }}
         update={update}
-        cardId={c.id}
-        key={c.id}
-        heading={c.heading}
-        answer={c.answer}
+        cardId={c._id}
+        key={c._id}
+        front={c.front}
+        back={c.back}
       />
     );
   });
