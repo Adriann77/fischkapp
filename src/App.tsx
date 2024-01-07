@@ -37,11 +37,12 @@ function App() {
   const getApiData = async () => {
     const response = await fetch(
       " https://training.nerdbord.io/api/v1/fischkapp/flashcards",
-    ).then((response) => response.json());
+    ).then((response) => response.json()).then((response) => {
+      setCards(response);
+			setVal(response.length);
+    });
 
-    setCards(response);
-    console.log(response);
-    setVal(response.length);
+    
   };
   useEffect(() => {
     getApiData();
@@ -57,18 +58,18 @@ function App() {
     setNewCard(false);
   }
 
-  function updateCards(newHeader: string, newAnswer: string, cardId: number) {
+  function updateCards(newFront: string, newBack: string, cardId: string) {
     setCards((prevCards) =>
       prevCards.map((card) => {
         if (card.id === cardId) {
-          return { ...card, heading: newHeader, answer: newAnswer };
+          return { ...card, front: newFront, back: newBack };
         }
         return card;
       }),
     );
   }
 
-  function removeCard(cardId: number) {
+  function removeCard(cardId: string) {
     setCards((prevCards) => prevCards.filter((card) => card.id !== cardId));
     setVal((prevVal) => prevVal - 1);
   }
@@ -82,7 +83,7 @@ function App() {
           <NewCard
             onSaveClick={(front, back) => {
               setCards((prevCards) => {
-                return [{ front, back, id: uuidv4() }, ...prevCards];
+                return [{ back, front, id: uuidv4() }, ...prevCards];
               });
               setVal((prevVal) => prevVal + 1);
             }}

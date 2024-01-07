@@ -6,9 +6,9 @@ import { CardEdit } from "./CardEdit";
 interface Props {
   front: string;
   back: string;
-  cardId: number;
-  update: (heading: string, answer: string, cardId: number) => void;
-  removeCard: (cardId: number) => void;
+  cardId: string;
+  update: (heading: string, answer: string, cardId: string) => void;
+  removeCard: (cardId: string) => void;
 }
 
 export const Card = ({ front, back, update, cardId, removeCard }: Props) => {

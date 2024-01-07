@@ -3,33 +3,32 @@ import { Card } from "./Card/Card";
 import React from "react";
 
 interface Card {
-  heading: string;
-  answer: string;
+
   back: string;
   front: string;
-  _id: number;
+  id: string;
 }
 
 interface Props {
   card: Card[];
-  updateCards: (newHeader: string, newAnswer: string, cardId: number) => void;
-  removeCard: (cardId: number) => void;
+  updateCards: (newHeader: string, newAnswer: string, cardId: string) => void;
+  removeCard: (cardId: string) => void;
 }
 
 export const CardsList = ({ card, updateCards, removeCard }: Props) => {
-  const update = (newHeading: string, newAnswer: string, cardId: number) => {
+  const update = (newHeading: string, newAnswer: string, cardId: string) => {
     updateCards(newHeading, newAnswer, cardId);
   };
 
   const cardsElement = card.map((c: Card) => {
     return (
       <Card
-        removeCard={(cardId: number) => {
+        removeCard={(cardId: string) => {
           removeCard(cardId);
         }}
         update={update}
-        cardId={c._id}
-        key={c._id}
+        cardId={c.id}
+        key={c.id}
         front={c.front}
         back={c.back}
       />
