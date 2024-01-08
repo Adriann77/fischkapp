@@ -49,10 +49,11 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
       setSecondStep(false);
       reset();
 
-      const front = inputValue;
-      const back = textInputValue;
+    const front = inputValue;
+	const back = textInputValue;
+		
 
-      onSaveClick(front, back);
+      onSaveClick(front, back, );
     }
   };
 
