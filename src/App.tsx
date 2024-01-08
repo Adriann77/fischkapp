@@ -38,11 +38,12 @@ function App() {
 	const getApiData = async () => {
 		const response = await fetch(' https://training.nerdbord.io/api/v1/fischkapp/flashcards')
 			.then(response => response.json())
-      .then(response => {
-        const reversedData = response.reverse()
+			.then(response => {
+				const reversedData = response.reverse();
 				setCards(reversedData);
-        setVal(response.length);
+				setVal(response.length);
 				setIsLoading(false);
+				console.log(response);
 			});
 	};
 	useEffect(() => {
@@ -59,30 +60,31 @@ function App() {
 		setNewCard(false);
 	}
 
-function onSaveClick(front, back) {
-	const flashcardData = {
-		front: front,
-		back: back,
-	};
+	function onSaveClick(front, back) {
+		setCards(prevCards => {
+			return [{ front, back, id: uuidv4() }, ...prevCards];
+		});
+		setVal(prevVal => prevVal + 1);
 
-	fetch('https://training.nerdbord.io/api/v1/fischkapp/flashcards', {
-		method: 'POST',
-		headers: {
-			Authorization: `secret_token`,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(flashcardData),
-	}).then(response => {
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
-		return response.json();
-	});
-  	useEffect(() => {
-			getApiData();
-		}, []);
-}
+		const flashcardData = {
+			front: front,
+			back: back,
+		};
 
+		fetch('https://training.nerdbord.io/api/v1/fischkapp/flashcards', {
+			method: 'POST',
+			headers: {
+				Authorization: 'secret_token',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(flashcardData),
+		}).then(response => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			return response.json();
+		});
+	}
 
 	function updateCards(newFront: string, newBack: string, cardId: string) {
 		setCards(prevCards =>

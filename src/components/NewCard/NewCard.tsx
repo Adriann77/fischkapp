@@ -53,7 +53,7 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
 	const back = textInputValue;
 		
 
-      onSaveClick(front, back, );
+      onSaveClick(front, back);
     }
   };
 

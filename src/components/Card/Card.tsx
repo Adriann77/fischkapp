@@ -31,7 +31,7 @@ export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
 	};
 
 	const submitChanges = () => {
-		if (inputValue && answerInputValue != '') {
+		if (inputValue && answerInputValue !== '') {
 			setFlipCard(prevState => !prevState);
 			setIsEditCard(false);
 			setShowError(false);
