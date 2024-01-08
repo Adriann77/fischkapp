@@ -33,13 +33,15 @@ function App() {
   const [newCard, setNewCard] = useState(false);
   const [val, setVal] = useState(response.length);
   const [cards, setCards] = useState(response);
+  const [isLoading, setIsLoading] = useState(true)
 
   const getApiData = async () => {
     const response = await fetch(
       " https://training.nerdbord.io/api/v1/fischkapp/flashcards",
     ).then((response) => response.json()).then((response) => {
       setCards(response);
-			setVal(response.length);
+      setVal(response.length);
+      setIsLoading(false)
     });
 
     
@@ -74,16 +76,33 @@ function App() {
     setVal((prevVal) => prevVal - 1);
   }
 
+  if (isLoading) {
+    return (
+			<AppLayout>
+				<AppHeader
+					createNewCard={createNewCard}
+					num={0}
+        />
+        <p>Loading...</p>
+			</AppLayout>
+		);
+  }
+
   return (
+
+
+
     <>
       <AppLayout>
         <AppHeader createNewCard={createNewCard} num={val} />
 
+        
+        
         {newCard && (
           <NewCard
             onSaveClick={(front, back) => {
               setCards((prevCards) => {
-                return [{ back, front, id: uuidv4() }, ...prevCards];
+                return [{ front, back, id: uuidv4() }, ...prevCards];
               });
               setVal((prevVal) => prevVal + 1);
             }}
