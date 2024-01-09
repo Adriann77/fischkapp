@@ -25,7 +25,7 @@ import { v4 as uuidv4 } from 'uuid';
 // 	},
 // ];
 
-const response: { front: string; back: string; id: string }[] = [];
+const response: { front: string; back: string; _id: string }[] = [];
 
 // Function to collect data
 
@@ -62,7 +62,7 @@ function App() {
 
 	function onSaveClick(front, back) {
 		setCards(prevCards => {
-			return [{ front, back, id: uuidv4() }, ...prevCards];
+			return [{ front, back, _id: uuidv4() }, ...prevCards];
 		});
 		setVal(prevVal => prevVal + 1);
 
@@ -89,7 +89,7 @@ function App() {
 	function updateCards(newFront: string, newBack: string, cardId: string) {
 		setCards(prevCards =>
 			prevCards.map(card => {
-				if (card.id === cardId) {
+				if (card._id === cardId) {
 					return { ...card, front: newFront, back: newBack };
 				}
 				return card;
@@ -98,7 +98,7 @@ function App() {
 	}
 
 	function removeCard(cardId: string) {
-		setCards(prevCards => prevCards.filter(card => card.id !== cardId));
+		setCards(prevCards => prevCards.filter(card => card._id !== cardId));
 		setVal(prevVal => prevVal - 1);
 	}
 

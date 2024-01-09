@@ -6,7 +6,7 @@ interface Card {
 
   back: string;
   front: string;
-  id: string;
+  _id: string;
 }
 
 interface Props {
@@ -27,8 +27,8 @@ export const CardsList = ({ card, updateCards, removeCard }: Props) => {
           removeCard(cardId);
         }}
         update={update}
-        cardId={c.id}
-        key={c.id}
+        cardId={c._id}
+        key={c._id}
         front={c.front}
         back={c.back}
       />
