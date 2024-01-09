@@ -124,13 +124,19 @@ function App() {
 			headers: {
 				Authorization: 'secret_token',
 			},
-			body: JSON.stringify(response),
-		}).then(response => {
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
-			return response.json();
-		});
+		})
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        if (response.status === 204) {
+					return console.error('There was an error with delete');
+				}
+				return response.json();
+			})
+			.catch(error => {
+				console.error('There was an error removing the flashcard:', error);
+			});
 	}
 
 	if (isLoading) {
