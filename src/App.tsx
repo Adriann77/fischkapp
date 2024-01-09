@@ -43,7 +43,7 @@ function App() {
 				setCards(reversedData);
 				setVal(response.length);
 				setIsLoading(false);
-				console.log(response);
+
 			});
 	};
 	useEffect(() => {
@@ -93,8 +93,32 @@ function App() {
 					return { ...card, front: newFront, back: newBack };
 				}
 				return card;
-			}),
-		);
+      }),
+      
+
+
+    );
+
+    const patchedCard = {
+      front: newFront,
+      back: newBack,
+    }
+
+
+    fetch(`https://training.nerdbord.io/api/v1/fischkapp/flashcards/${cardId}`, {
+			method: 'PATCH',
+			headers: {
+				Authorization: 'secret_token',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(patchedCard),
+		}).then(response => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			return response.json();
+		});
+    
 	}
 
 	function removeCard(cardId: string) {
