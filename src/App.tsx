@@ -115,30 +115,29 @@ function App() {
 		});
 	}
 
-	function removeCard(cardId: string) {
-		setCards(prevCards => prevCards.filter(card => card._id !== cardId));
-		setVal(prevVal => prevVal - 1);
+	async function removeCard(cardId: string) {
+		try {
+			setCards(prevCards => prevCards.filter(card => card._id !== cardId));
+			setVal(prevVal => prevVal - 1);
 
-		fetch(`https://training.nerdbord.io/api/v1/fischkapp/flashcards/${cardId}`, {
-			method: 'DELETE',
-			headers: {
-				Authorization: 'secret_token',
-			},
-		})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        if (response.status === 204) {
-					return console.error('There was an error with delete');
-				}
-				return response.json();
-			})
-			.catch(error => {
-				console.error('There was an error removing the flashcard:', error);
+			const response = await fetch(`https://training.nerdbord.io/api/v1/fischkapp/flashcards/${cardId}`, {
+				method: 'DELETE',
+				headers: {
+					Authorization: 'secret_token',
+				},
 			});
-	}
 
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+
+			if (response.status === 204) {
+				return;
+			}
+		} catch (error) {
+			console.error('There was an error removing the flashcard:', error);
+		}
+	}
 	if (isLoading) {
 		return (
 			<AppLayout>
