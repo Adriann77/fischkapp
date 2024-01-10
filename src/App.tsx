@@ -115,8 +115,10 @@ function App() {
 		});
 	}
 
-	async function removeCard(cardId: string) {
-		try {
+  async function removeCard(cardId: string) {
+    try {
+      setCards(prevCards => prevCards.filter(card => card._id !== cardId));
+			setVal(prevVal => prevVal - 1);
 			
 			const response = await fetch(`https://training.nerdbord.io/api/v1/fischkapp/flashcards/${cardId}`, {
 				method: 'DELETE',
@@ -127,7 +129,7 @@ function App() {
 
 			if (response.ok) {
 					setCards(prevCards => prevCards.filter(card => card._id !== cardId));
-					setVal(prevVal => prevVal - 1);
+					
 			} else {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
