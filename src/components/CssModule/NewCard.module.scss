@@ -1,186 +1,187 @@
 @mixin container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 343px;
-  min-height: 188px;
-  margin-bottom: -8px;
-  border-radius: 15px;
-  background: var(--White, #fff);
-  border: 1px solid var(--Border, #ebebec);
-  overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 343px;
+	min-height: 188px;
+	margin-bottom: -8px;
+	border-radius: 15px;
+	background: var(--White, #fff);
+	border: 1px solid var(--Border, #ebebec);
+	overflow: hidden;
 }
 
 @mixin buttonTrash {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	cursor: pointer;
+	background-color: #fff;
 }
 
 @mixin text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  word-wrap: break-word;
-  padding: 16px;
-  margin-top: 14px;
-  height: 100%;
-  text-align: center;
-  word-wrap: break-word;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	word-wrap: break-word;
+  word-break:break-all;
+	padding: 18px;
+	margin-top: 14px;
+	height: 100%;
+	text-align: center;
+	word-wrap: break-word;
 }
 
 .cardFront {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(0) perspective(1000px);
-  transition: transform 0.8s ease;
-  transform-style: preserve-3d;
-  @include container;
-  .buttonTrash {
-    @include buttonTrash;
-  }
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: rotate(0) perspective(1000px);
+	transition: transform 0.8s ease;
+	transform-style: preserve-3d;
+	@include container;
+	.buttonTrash {
+		@include buttonTrash;
+	}
 
-  .text {
-    @include text;
-    .answer {
-      display: none;
-      opacity: 0;
-    }
-  }
+	.text {
+		@include text;
+		.answer {
+			display: none;
+			opacity: 0;
+		}
+	}
 }
 
 .cardBack {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.8s ease;
-  transform: rotateY(180deg) perspective(1000px);
-  transform-style: preserve-3d;
-  @include container;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.8s ease;
+	transform: rotateY(180deg) perspective(1000px);
+	transform-style: preserve-3d;
+	@include container;
 
-  .buttonTrash {
-    @include buttonTrash;
-    transform: rotateY(180deg) translateX(300px);
-  }
+	.buttonTrash {
+		@include buttonTrash;
+		transform: rotateY(180deg) translateX(300px);
+	}
 
-  .text {
-    @include text;
-    .heading {
-      display: none;
-      opacity: 0;
-    }
+	.text {
+		@include text;
+		.heading {
+			display: none;
+			opacity: 0;
+		}
 
-    .answer {
-      transform: rotateY(180deg);
-    }
-  }
+		.answer {
+			transform: rotateY(180deg);
+		}
+	}
 }
 
 .rectangle {
-  @include container;
+	@include container;
 }
 
 .buttonTrash {
-  @include buttonTrash;
+	@include buttonTrash;
 }
 
 .formContainerSingle {
-  margin-top: 50px;
-  margin-bottom: 88px;
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  flex-direction: column;
-  text-align: left;
+	margin-top: 50px;
+	margin-bottom: 88px;
+	display: flex;
+	padding: 12px;
+	gap: 8px;
+	flex-direction: column;
+	text-align: left;
 }
 .formContainerDouble {
-  margin-top: 28px;
-  margin-bottom: 87px;
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  flex-direction: column;
-  text-align: left;
+	margin-top: 28px;
+	margin-bottom: 87px;
+	display: flex;
+	padding: 12px;
+	gap: 8px;
+	flex-direction: column;
+	text-align: left;
 }
 
 textarea {
-  font-family: Lexend;
-
-  font-weight: 500;
-  resize: none;
-  width: 315px;
-  height: 40px;
-  word-wrap: break-word;
-  border: 1px solid #ebebec;
-  color: var(--accent);
-  font-size: 16px;
-  text-align: left;
-  padding: 12px 10px 10px 10px;
-  overflow: hidden;
+	width: 315px;
+	padding-left: 12px;
+	padding-right: 10px;
+	padding-block: 10px;
+	color: var(--accent);
+	border: 1px solid var(--Border, #ebebec);
+	font-family: inherit;
+	font-size: 16px;
+	font-weight: 500;
+	resize: none;
+	overflow-y: hidden;
+  word-break: break-all;
 }
 
 .buttons {
-  position: absolute;
-  display: flex;
-  justify-content: end;
-  align-content: end;
-  bottom: 14px;
-  right: 14px;
+	position: absolute;
+	display: flex;
+	justify-content: end;
+	align-content: end;
+	bottom: 14px;
+	right: 14px;
 }
 
 .buttonCardOne,
 .buttonCardSecond {
-  display: flex;
-  width: 110px;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 22px;
-  cursor: pointer;
-  border: none;
+	display: flex;
+	width: 110px;
+	padding: 10px 12px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border-radius: 22px;
+	cursor: pointer;
+	border: none;
 }
 
 .buttonCardOne {
-  background: var(--White, #fff);
+	background: var(--White, #fff);
 }
 
 .buttonCardSecond {
-  color: var(--white);
-  background: var(--accent);
+	color: var(--white);
+	background: var(--accent);
 }
 
 .editState {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 28px;
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 28px;
 }
 
 .headingTitle {
-  top: 28px;
-  left: 26px;
-  color: var(--Accent, #161616);
-  font-family: Lexend;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
+	top: 28px;
+	left: 26px;
+  word-break: break-all;
+	color: var(--Accent, #161616);
+	font-family: Lexend;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
 }
 
 .errorParaph {
-  position: absolute;
-  color: red;
-  font-size: 12px;
-  top: 10px;
+	position: absolute;
+	color: red;
+	font-size: 12px;
+	top: 10px;
 }

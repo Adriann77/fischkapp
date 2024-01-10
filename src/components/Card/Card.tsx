@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CardFront } from "./CardFront";
+import { CardFront } from "./CardLayout";
 import { FlippedCardEdit } from "./CardFrontEdit";
-import { CardEdit } from "./CardEdit";
+import { CardEdit } from "./CardBackEdit";
 
 interface Props {
   front: string;
@@ -21,11 +21,16 @@ export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
+     event.target.style.height = 'auto';
+			event.target.style.height = `${event.target.scrollHeight}px`;
+    
   };
   const handleAnswerInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setAnswerInputValue(event.target.value);
+     event.target.style.height = 'auto';
+			event.target.style.height = `${event.target.scrollHeight}px`;
   };
 
   const editCard = () => {

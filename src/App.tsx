@@ -1,11 +1,11 @@
-import { AppHeader } from './components/AppHeader';
-import { AppLayout } from './components/AppLayout';
+import { AppHeader } from './components/Header/AppHeader';
+import { AppLayout } from './components/AppLayout/AppLayout';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { NewCard } from './components/NewCard/NewCard';
-import { CardsList } from './components/CardsList';
+import { CardsList } from './components/CardList/CardsList';
 import { v4 as uuidv4 } from 'uuid';
-import { Loading } from './components/Loading.tsx/Loading';
+import { Loading } from './components/Loading/Loading';
 
 const response: { front: string; back: string; _id: string }[] = [];
 
