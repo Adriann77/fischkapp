@@ -3,7 +3,6 @@ import { Card } from "./Card/Card";
 import React from "react";
 
 interface Card {
-
   back: string;
   front: string;
   _id: string;
