@@ -1,33 +1,13 @@
-import { AppHeader } from './components/AppHeader';
-import { AppLayout } from './components/AppLayout';
+import { AppHeader } from './components/Header/AppHeader';
+import { AppLayout } from './components/AppLayout/AppLayout';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { NewCard } from './components/NewCard/NewCard';
-import { CardsList } from './components/CardsList';
+import { CardsList } from './components/CardList/CardsList';
 import { v4 as uuidv4 } from 'uuid';
-
-// const initialCards = [
-// 	{
-// 		front: 'pierwsze pytanie krotkie',
-// 		back: 'Lorem ipsum dolor sit amet.',
-// 		id: 1,
-// 	},
-// 	{
-// 		front: 'drugie pytanie srednie srednie drugie pytanie',
-// 		back:
-// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, pariatur eveniet placeat nisi cumque porro deleniti aspernatur dolor culpa fugiat dignissimos nam tenetur, incidunt a commodi? Sed qui necessitatibus, placeat nisi cumque porro deleniti aspernatur dolor culpa fugiat dignissimo sit!unt a commodi? Sed qui necessitatibus, placeat nisi cumque porro deleniti aspernatur dolor culpa fugiat dignissimo sit!,ignissimo sit!unt a commodi? Sed qui necessitatibus, placeat nisi cumque porro deleniti aspernatur dolor culpa fugiat dignissimo sit!',
-// 		id: 2,
-// 	},
-// 	{
-// 		front: 'trzecie pytanie dlugie dlugie dlugie trzecie pytanie pytanie trzeczie',
-// 		back: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, assumenda?',
-// 		id: 3,
-// 	},
-// ];
+import { Loading } from './components/Loading/Loading';
 
 const response: { front: string; back: string; _id: string }[] = [];
-
-// Function to collect data
 
 function App() {
 	const [newCard, setNewCard] = useState(false);
@@ -35,8 +15,8 @@ function App() {
 	const [cards, setCards] = useState(response);
 	const [isLoading, setIsLoading] = useState(true);
 
-	const getApiData = async () => {
-		const response = await fetch(' https://training.nerdbord.io/api/v1/fischkapp/flashcards')
+	const getApiData = () => {
+		fetch(' https://training.nerdbord.io/api/v1/fischkapp/flashcards')
 			.then(response => response.json())
 			.then(response => {
 				const reversedData = response.reverse();
@@ -59,30 +39,36 @@ function App() {
 		setNewCard(false);
 	}
 
-	function onSaveClick(front, back) {
-		setCards(prevCards => {
-			return [{ front, back, _id: uuidv4() }, ...prevCards];
-		});
-		setVal(prevVal => prevVal + 1);
-
+	async function onSaveClick(front, back) {
 		const flashcardData = {
 			front: front,
 			back: back,
 		};
 
-		fetch('https://training.nerdbord.io/api/v1/fischkapp/flashcards', {
-			method: 'POST',
-			headers: {
-				Authorization: 'secret_token',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(flashcardData),
-		}).then(response => {
+		try {
+			setIsLoading(true);
+			const response = await fetch('https://training.nerdbord.io/api/v1/fischkapp/flashcards', {
+				method: 'POST',
+				headers: {
+					Authorization: 'secret_token',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(flashcardData),
+			});
+
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-			return response.json();
-		});
+
+			await getApiData();
+
+			setCards(prevCards => [{ front, back, _id: uuidv4() }, ...prevCards]);
+
+			setVal(prevVal => prevVal + 1);
+		} catch (error) {
+			console.error('There was an error adding the flashcard:', error);
+			window.location.reload();
+		}
 	}
 
 	function updateCards(newFront: string, newBack: string, cardId: string) {
@@ -115,11 +101,11 @@ function App() {
 		});
 	}
 
-  async function removeCard(cardId: string) {
-    try {
-      setCards(prevCards => prevCards.filter(card => card._id !== cardId));
+	async function removeCard(cardId: string) {
+		try {
+			setCards(prevCards => prevCards.filter(card => card._id !== cardId));
 			setVal(prevVal => prevVal - 1);
-			
+
 			const response = await fetch(`https://training.nerdbord.io/api/v1/fischkapp/flashcards/${cardId}`, {
 				method: 'DELETE',
 				headers: {
@@ -128,24 +114,28 @@ function App() {
 			});
 
 			if (response.ok) {
-					setCards(prevCards => prevCards.filter(card => card._id !== cardId));
-					
+				setCards(prevCards => prevCards.filter(card => card._id !== cardId));
 			} else {
 				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-
 		} catch (error) {
 			console.error('There was an error removing the flashcard:', error);
 		}
 	}
+
 	if (isLoading) {
 		return (
 			<AppLayout>
 				<AppHeader
 					createNewCard={createNewCard}
-					num={0}
+					num={val}
 				/>
-				<p>Loading...</p>
+				<Loading />
+				<CardsList
+					card={cards}
+					updateCards={updateCards}
+					removeCard={removeCard}
+				/>
 			</AppLayout>
 		);
 	}
@@ -157,7 +147,6 @@ function App() {
 					createNewCard={createNewCard}
 					num={val}
 				/>
-
 				{newCard && (
 					<NewCard
 						onSaveClick={onSaveClick}

@@ -17,13 +17,19 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
   const [firstStep, setFirstStep] = useState(checker);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(event.target.value);
+	  setInputValue(event.target.value);
+	   event.target.style.height = 'auto';
+			event.target.style.height = `${event.target.scrollHeight}px`;
   };
   const handleTextInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
-    setTextInputValue(event.target.value);
+	  setTextInputValue(event.target.value);
+	  event.target.style.height = 'auto';
+		event.target.style.height = `${event.target.scrollHeight}px`;
   };
+	
+	
 
   const backToFirstStep = () => {
     setFirstStep(true);
@@ -49,9 +55,8 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
       setSecondStep(false);
       reset();
 
-    const front = inputValue;
-	const back = textInputValue;
-		
+      const front = inputValue;
+      const back = textInputValue;
 
       onSaveClick(front, back);
     }

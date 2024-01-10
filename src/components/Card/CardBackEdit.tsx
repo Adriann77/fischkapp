@@ -4,19 +4,19 @@ import { Trash } from '../../../icons/Trash';
 
 interface Props {
 	editCard: () => void;
-	handleInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 	inputValue: string;
+	handleAnswerInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+	answerInputValue: string;
 	cancelChanges: () => void;
-	submitChanges: () => void;
 	showError: boolean;
+	submitChanges: () => void;
 	deleteCard: () => void;
 }
 
-    
-export const FlippedCardEdit = ({
-	editCard,
-	handleInputChange,
+export const CardEdit = ({
 	inputValue,
+	handleAnswerInputChange,
+	answerInputValue,
 	cancelChanges,
 	submitChanges,
 	showError,
@@ -25,16 +25,17 @@ export const FlippedCardEdit = ({
 	return (
 		<div className={styles.rectangle}>
 			<button
-				onClick={deleteCard}
-				className={styles.buttonTrash}>
+				className={styles.buttonTrash}
+				onClick={deleteCard}>
 				<Trash />
 			</button>
-			<div className={styles.formContainerSingle}>
-                <textarea
-                    rows={1}
-					onChange={handleInputChange}
-					value={inputValue}
-					
+			<div className={styles.formContainerDouble}>
+				<p className={styles.headingTitle}>{inputValue}</p>
+        <textarea
+          rows={1}
+					onChange={handleAnswerInputChange}
+          value={answerInputValue}
+       
 				/>
 			</div>
 			{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
