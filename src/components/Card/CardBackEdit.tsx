@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '../CssModule/NewCard.module.scss';
 import { Trash } from '../../../icons/Trash';
 
@@ -22,6 +22,15 @@ export const CardEdit = ({
 	showError,
 	deleteCard,
 }: Props) => {
+	const answerInputRef = useRef<HTMLTextAreaElement | null>(null);
+
+	useEffect(() => {
+		if (answerInputRef.current) {
+			answerInputRef.current.style.height = 'auto';
+			answerInputRef.current.style.height = `${answerInputRef.current.scrollHeight}px`;
+		}
+	}, [answerInputValue]);
+
 	return (
 		<div className={styles.rectangle}>
 			<button
@@ -31,14 +40,14 @@ export const CardEdit = ({
 			</button>
 			<div className={styles.formContainerDouble}>
 				<p className={styles.headingTitle}>{inputValue}</p>
-        <textarea
-          rows={1}
+				<textarea
+					rows={1}
 					onChange={handleAnswerInputChange}
-          value={answerInputValue}
-       
+					value={answerInputValue}
+					ref={answerInputRef}
 				/>
 			</div>
-			{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
+			{showError && <p className={styles.errorParaph}>you can't save without content</p>}
 			<div className={styles.buttons}>
 				<button
 					onClick={cancelChanges}

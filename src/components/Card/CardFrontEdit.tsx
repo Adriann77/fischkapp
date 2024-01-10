@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '../CssModule/NewCard.module.scss';
 import { Trash } from '../../../icons/Trash';
 
@@ -12,7 +12,6 @@ interface Props {
 	deleteCard: () => void;
 }
 
-    
 export const FlippedCardEdit = ({
 	editCard,
 	handleInputChange,
@@ -22,6 +21,15 @@ export const FlippedCardEdit = ({
 	showError,
 	deleteCard,
 }: Props) => {
+	const inputRef = useRef<HTMLTextAreaElement | null>(null);
+
+	useEffect(() => {
+		if (inputRef.current) {
+			inputRef.current.style.height = 'auto';
+			inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+		}
+	}, [inputValue]);
+
 	return (
 		<div className={styles.rectangle}>
 			<button
@@ -30,14 +38,14 @@ export const FlippedCardEdit = ({
 				<Trash />
 			</button>
 			<div className={styles.formContainerSingle}>
-                <textarea
-                    rows={1}
+				<textarea
+					rows={1}
 					onChange={handleInputChange}
 					value={inputValue}
-					
+					ref={inputRef}
 				/>
 			</div>
-			{showError && <p className={styles.errorParaph}>Wprowadź najpierw jakieś słowa.</p>}
+			{showError && <p className={styles.errorParaph}>you can't save without content</p>}
 			<div className={styles.buttons}>
 				<button
 					onClick={cancelChanges}
