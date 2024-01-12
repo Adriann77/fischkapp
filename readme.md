@@ -1,19 +1,19 @@
-<h1 align="center">
-  Fischkapp 📄
-</h1>
+## Fischkapp - Flashcard Learning Application
 
-This project aims to create a simple app that supports learning.
+### Overview
 
----
+Fischkapp is a React/SCSS-based web application designed to replicate the concept of flashcards for learning purposes. The project focuses on providing a user-friendly interface for creating, editing, and deleting flashcards. It incorporates smooth animations for flipping cards and is connected to both a third-party API for additional content and a backend for data storage.
 
-### 📝 Project requirements
+### Features
 
-- should be possible to add new flashcard
-- should be possible to edit existing flashcard
-- should be able to delete flashcard
-- should be able to toggle flashcard between front, and back
-- should be able to display many flashcards
+- **Flashcard Creation:** Easily add new flashcards to your deck for effective learning.
+- **Flashcard Deletion:** Remove unwanted flashcards to keep your deck organized.
+- **Flashcard Editing:** Modify existing flashcards to update or refine your study material.
+- **Card Flip Animation:** Enjoy a seamless card-flipping animation for a visually engaging learning experience.
+- **API Integration:** Connects with a third-party API to fetch additional content for your flashcards.
+- **Backend Connectivity:** Stores and retrieves flashcard data through a backend server.
 
-### 🔧 Technical requirements
 
-React.js, CSS Modules
+#### Live Demo
+
+Visit the live demo of Fischkapp: [Fischkapp Live Demo](https://fischkapp.netlify.app/)
