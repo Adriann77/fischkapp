@@ -15,12 +15,8 @@ export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
 	const [isEditCard, setIsEditCard] = useState(false);
 	const [inputValue, setInputValue] = useState(front);
 	const [answerInputValue, setAnswerInputValue] = useState(back);
-
 	const [flipCard, setFlipCard] = useState(true);
 	const [showError, setShowError] = useState(false);
-
-	const inputRef = useRef(null);
-	const answerInputRef = useRef(null);
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setInputValue(event.target.value);
@@ -41,6 +37,7 @@ export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
 		if (inputValue && answerInputValue !== '') {
 			setFlipCard(prevState => !prevState);
 			setIsEditCard(false);
+			console.log(inputValue);
 			setShowError(false);
 		} else {
 			setShowError(true);
@@ -53,7 +50,7 @@ export const Card = ({ front, back, update, cardId, removeCard }: Props) => {
 	};
 	const cancelChanges = () => {
 		setFlipCard(prevState => !prevState);
-		setInputValue(front);
+		setInputValue(front)
 		setAnswerInputValue(back);
 		setIsEditCard(false);
 		setShowError(false);

@@ -39,7 +39,7 @@ function App() {
 		setNewCard(false);
 	}
 
-	async function onSaveClick(front, back) {
+	async function onSaveClick(front: string, back: string) {
 		const flashcardData = {
 			front: front,
 			back: back,

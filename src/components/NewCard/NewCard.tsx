@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { NewCardFirstStep } from "./NewCardFirstStep";
 import { NewCardSecondStep } from "./NewCardSecondStep";
+import styles from '../CssModule/NewCard.module.scss'
 
 interface Props {
   checker: boolean;
