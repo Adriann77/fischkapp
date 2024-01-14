@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../CssModule/NewCard.module.scss';
 import { Trash } from '../../../icons/Trash';
 
@@ -23,6 +23,7 @@ export const FlippedCardEdit = ({
 }: Props) => {
 	const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
+
 	useEffect(() => {
 		if (inputRef.current) {
 			inputRef.current.style.height = 'auto';
@@ -30,6 +31,7 @@ export const FlippedCardEdit = ({
 		}
 	}, [inputValue]);
 
+	
 	return (
 		<div className={styles.rectangle}>
 			<button
@@ -53,7 +55,12 @@ export const FlippedCardEdit = ({
 					Cancel
 				</button>
 				<button
+					disabled={inputValue === '' ? true : false}
 					onClick={submitChanges}
+					style={{
+						cursor: inputValue === '' ? 'not-allowed' : 'pointer',
+						backgroundColor: inputValue === '' ? 'gray' : 'black',
+					}}
 					className={styles.buttonCardSecond}>
 					Save
 				</button>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { NewCardFirstStep } from "./NewCardFirstStep";
 import { NewCardSecondStep } from "./NewCardSecondStep";
 
+
 interface Props {
   checker: boolean;
   reset: () => void;

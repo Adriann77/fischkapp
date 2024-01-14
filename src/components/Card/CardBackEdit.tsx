@@ -55,6 +55,11 @@ export const CardEdit = ({
 					Cancel
 				</button>
 				<button
+					disabled={answerInputValue === '' ? true : false}
+					style={{
+						cursor: answerInputValue === '' ? 'not-allowed' : 'pointer',
+						backgroundColor: answerInputValue === '' ? 'gray' : 'black',
+					}}
 					onClick={submitChanges}
 					className={styles.buttonCardSecond}>
 					Save

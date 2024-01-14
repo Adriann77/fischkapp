@@ -14,6 +14,8 @@ export const NewCardFirstStep = ({ inputValue, handleInputChange, showError, res
 		<div className={styles.rectangle}>
 			<div className={styles.formContainerSingle}>
 				<textarea
+					data-testid="front-textarea-first-step"
+					name='FrontCard'
 					rows={1}
 					value={inputValue}
 					onChange={handleInputChange}
@@ -27,6 +29,7 @@ export const NewCardFirstStep = ({ inputValue, handleInputChange, showError, res
 					Cancel
 				</button>
 				<button
+					data-testid='SaveBtn'
 					onClick={checkInput}
 					className={styles.buttonCardSecond}>
 					Next

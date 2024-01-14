@@ -151,6 +151,7 @@
 textarea {
 	width: 315px;
 	padding-left: 12px;
+	min-height: 40px;
 	padding-right: 10px;
 	padding-block: 10px;
 	color: var(--accent);
@@ -161,6 +162,11 @@ textarea {
 	resize: none;
 	overflow-y: hidden;
 	word-break: break-all;
+}
+
+textarea:focus{
+	caret-color: var(--accent);
+	outline: 2px solid var(--accent);
 }
 
 .buttons {
