@@ -26,6 +26,8 @@ export const NewCardSecondStep = ({
 			<div className={styles.formContainerDouble}>
 				<p className={styles.headingTitle}>{inputValue}</p>
 				<textarea
+					data-testid='back-textarea-second-step'
+					name='Back'
 					rows={1}
 					value={textInputValue}
 					onChange={handleTextInputChange}
@@ -39,6 +41,7 @@ export const NewCardSecondStep = ({
 					Back
 				</button>
 				<button
+					data-testid='SaveBtn'
 					onClick={checkTextInput}
 					className={styles.buttonCardSecond}>
 					Save
