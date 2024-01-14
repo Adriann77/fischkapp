@@ -30,12 +30,13 @@ describe('NewCard Component Tests', () => {
 		fireEvent.change(screen.getByTestId('front-textarea-first-step'), {
 			target: { value: 'Front Value' },
 		});
+		fireEvent.click(screen.getByText('Next'));
 
 		fireEvent.change(screen.getByTestId('back-textarea-second-step'), {
 			target: { value: 'Back Value' },
 		});
-
 		fireEvent.click(screen.getByTestId('SaveBtn'));
+
 
 		await waitFor(() => {
 			expect(onSaveClickMock).toHaveBeenCalledWith('Front Value', 'Back Value');
