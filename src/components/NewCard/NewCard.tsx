@@ -3,7 +3,6 @@ import { useState } from "react";
 import { NewCardFirstStep } from "./NewCardFirstStep";
 import { NewCardSecondStep } from "./NewCardSecondStep";
 
-
 interface Props {
   checker: boolean;
   reset: () => void;
@@ -18,19 +17,17 @@ export const NewCard = ({ checker, reset, onSaveClick }: Props) => {
   const [firstStep, setFirstStep] = useState(checker);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-	  setInputValue(event.target.value);
-	   event.target.style.height = 'auto';
-			event.target.style.height = `${event.target.scrollHeight}px`;
+    setInputValue(event.target.value);
+    event.target.style.height = "auto";
+    event.target.style.height = `${event.target.scrollHeight}px`;
   };
   const handleTextInputChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
-	  setTextInputValue(event.target.value);
-	  event.target.style.height = 'auto';
-		event.target.style.height = `${event.target.scrollHeight}px`;
+    setTextInputValue(event.target.value);
+    event.target.style.height = "auto";
+    event.target.style.height = `${event.target.scrollHeight}px`;
   };
-	
-	
 
   const backToFirstStep = () => {
     setFirstStep(true);

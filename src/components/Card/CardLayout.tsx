@@ -18,44 +18,78 @@ export const CardFront = ({
   setFlipCard,
 }: Props) => {
   return (
-		<>
-			{!flipCard ? (
-				<div
-					onClick={() => {
-						setFlipCard(!flipCard);
-					}}
-					className={styles.cardFront}>
-					<div className={`${styles.card} ${flipCard ? styles.flip : ''}`}>
-						<button
-							onClick={editCard}
-							className={styles.buttonTrash}>
-							<Pencil />
-						</button>
-						<div className={styles.text}>
-							<p className={`${styles.heading} ${flipCard ? styles.fade : styles.showText}`}>{inputValue}</p>
-							<p className={`${styles.answer} ${flipCard ? styles.showText : styles.fade}`}>{answerInputValue}</p>
-						</div>
-					</div>
-				</div>
-			) : (
-				<div
-					onClick={() => {
-						setFlipCard(!flipCard);
-					}}
-					className={styles.cardBack}>
-					<div className={`${styles.card} ${flipCard ? styles.flipBack : ''}`}>
-						<button
-							onClick={editCard}
-							className={styles.buttonTrash}>
-							<Pencil />
-						</button>
-						<div className={styles.text}>
-							<p className={`${styles.heading} ${flipCard ? styles.showText : styles.fade}`}>{inputValue}</p>
-							<p className={`${styles.answer} ${flipCard ? styles.showText : styles.fade}`}>{answerInputValue}</p>
-						</div>
-					</div>
-				</div>
-			)}
-		</>
-	);
+    <>
+      {!flipCard ? (
+        <div
+          onClick={() => {
+            setFlipCard(!flipCard);
+          }}
+          className={styles.cardFront}
+        >
+          <div className={`${styles.card} ${flipCard ? styles.flip : ""}`}>
+            <button
+              data-testid="Edit"
+              onClick={editCard}
+              className={styles.buttonTrash}
+            >
+              <Pencil />
+            </button>
+            <div className={styles.text}>
+              <p
+                data-testid="front"
+                className={`${styles.heading} ${
+                  flipCard ? styles.fade : styles.showText
+                }`}
+              >
+                {inputValue}
+              </p>
+              <p
+                data-testid="back"
+                className={`${styles.answer} ${
+                  flipCard ? styles.showText : styles.fade
+                }`}
+              >
+                {answerInputValue}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div
+          onClick={() => {
+            setFlipCard(!flipCard);
+          }}
+          className={styles.cardBack}
+        >
+          <div className={`${styles.card} ${flipCard ? styles.flipBack : ""}`}>
+            <button
+              onClick={editCard}
+              data-testid="Edit"
+              className={styles.buttonTrash}
+            >
+              <Pencil />
+            </button>
+            <div className={styles.text}>
+              <p
+                data-testid="front"
+                className={`${styles.heading} ${
+                  flipCard ? styles.showText : styles.fade
+                }`}
+              >
+                {inputValue}
+              </p>
+              <p
+                data-testid="back"
+                className={`${styles.answer} ${
+                  flipCard ? styles.showText : styles.fade
+                }`}
+              >
+                {answerInputValue}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
