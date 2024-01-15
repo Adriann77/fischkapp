@@ -22,12 +22,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
   # Single deploy job since we're just deploying
   deploy:
+    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,3 +44,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Build
+        run: npm run build # or the appropriate build command for your project
+      - name: Test
+        run: npm test # or the appropriate test command for your project
