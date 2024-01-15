@@ -34,40 +34,44 @@ export const CardEdit = ({
   }, [answerInputValue]);
 
   return (
-    <div className={styles.rectangle}>
-      <button className={styles.buttonTrash} onClick={deleteCard}>
-        <Trash />
-      </button>
-      <div className={styles.formContainerDouble}>
-        <p data-testid="Front" className={styles.headingTitle}>
-          {inputValue}
-        </p>
-        <textarea
-          rows={1}
-          onChange={handleAnswerInputChange}
-          value={answerInputValue}
-          ref={answerInputRef}
-        />
-      </div>
-      {showError && (
-        <p className={styles.errorParaph}>you can't save without content</p>
-      )}
-      <div className={styles.buttons}>
-        <button onClick={cancelChanges} className={styles.buttonCardOne}>
-          Cancel
-        </button>
-        <button
-          disabled={answerInputValue === "" ? true : false}
-          style={{
-            cursor: answerInputValue === "" ? "not-allowed" : "pointer",
-            backgroundColor: answerInputValue === "" ? "gray" : "black",
-          }}
-          onClick={submitChanges}
-          className={styles.buttonCardSecond}
-        >
-          Save
-        </button>
-      </div>
-    </div>
-  );
+		<div className={styles.rectangle}>
+			<button
+				data-testid='Delete'
+				className={styles.buttonTrash}
+				onClick={deleteCard}>
+				<Trash />
+			</button>
+			<div className={styles.formContainerDouble}>
+				<p
+					data-testid='Front'
+					className={styles.headingTitle}>
+					{inputValue}
+				</p>
+				<textarea
+					rows={1}
+					onChange={handleAnswerInputChange}
+					value={answerInputValue}
+					ref={answerInputRef}
+				/>
+			</div>
+			{showError && <p className={styles.errorParaph}>you can't save without content</p>}
+			<div className={styles.buttons}>
+				<button
+					onClick={cancelChanges}
+					className={styles.buttonCardOne}>
+					Cancel
+				</button>
+				<button
+					disabled={answerInputValue === '' ? true : false}
+					style={{
+						cursor: answerInputValue === '' ? 'not-allowed' : 'pointer',
+						backgroundColor: answerInputValue === '' ? 'gray' : 'black',
+					}}
+					onClick={submitChanges}
+					className={styles.buttonCardSecond}>
+					Save
+				</button>
+			</div>
+		</div>
+	);
 };
