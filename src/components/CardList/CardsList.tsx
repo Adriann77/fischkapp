@@ -21,6 +21,7 @@ export const CardsList = ({ card, updateCards, removeCard }: Props) => {
   const cardsElement = card.map((c: Card) => {
     return (
       <Card
+        data-testid="Delete"
         removeCard={(cardId: string) => {
           removeCard(cardId);
         }}
