@@ -17,6 +17,12 @@
       "src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.jsx", "src/test/testCard.test.tsx"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.jsx",
+    "src/test/testCard.test.tsx"
+  ],
   "exclude": ["node_modules"]
 }
