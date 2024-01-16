@@ -40,3 +40,13 @@ jobs:
     - name: Deploy
       if: success()
       uses: actions/deploy-pages@v4
+      with:
+        # Specify the folder to deploy (adjust this based on your project structure)
+        folder: build
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: github-pages
+        path: build # Make sure this path matches the folder you are deploying
+
