@@ -21,7 +21,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -38,14 +37,10 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build # or the appropriate build command for your project
+        run: npm run build
 
       - name: Test
-        run: npm test # or the appropriate test command for your project
-
-      - name: Verify Build Directory
-        run: |
-          ls -R
+        run: npm test 
 
       - name: Deploy
         if: success()
@@ -59,8 +54,8 @@ jobs:
           # Remove existing contents in gh-pages branch
           git rm -rf .
 
-          # Copy contents from the build directory to the gh-pages branch
-          cp -r build/* .
+          # Explicitly set the path to the build directory
+          cp -r $GITHUB_WORKSPACE/build/* .
 
           # Commit and push changes
           git add .
