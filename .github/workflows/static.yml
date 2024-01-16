@@ -52,9 +52,11 @@ jobs:
           # Create gh-pages branch if it doesn't exist
           git checkout -B gh-pages
 
-          # Copy contents to gh-pages branch
+          # Remove existing contents in gh-pages branch
           git rm -rf .
-          cp -a build/. .
+
+          # Copy contents from the build directory to the gh-pages branch
+          cp -r build/* .
 
           # Commit and push changes
           git add .
