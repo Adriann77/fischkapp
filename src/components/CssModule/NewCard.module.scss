@@ -13,7 +13,6 @@
 }
 
 @mixin buttonTrash {
-  
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -47,18 +46,21 @@
 	transform: rotate(0) perspective(1000px);
 	transition: transform 1.2s ease;
 	transform-style: preserve-3d;
-
 	@include container;
-	.buttonTrash {
+
+	.actionBtnFront {
 		@include buttonTrash;
-    
+		opacity: 1;
+	}
+	.actionBtnBack {
+		opacity: 0;
+		@include buttonTrash;
 	}
 
 	.text {
 		@include text;
 
 		.heading {
-			
 			opacity: 1;
 			display: block;
 		}
@@ -67,6 +69,36 @@
 			backface-visibility: hidden;
 			display: none;
 			opacity: 1;
+		}
+	}
+}
+
+.cardBack {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 1.2s ease;
+	transform: rotateY(180deg) perspective(1000px);
+	transform-style: preserve-3d;
+	@include container;
+
+	.actionBtnFront {
+		opacity: 1;
+		@include buttonTrash;
+		transform: rotateY(-180deg);
+		left: -300px;
+		top: 0;
+	}
+
+	.text {
+		@include text;
+		.heading {
+			display: none;
+			opacity: 0;
+		}
+
+		.answer {
+			transform: rotateY(180deg);
 		}
 	}
 }
@@ -95,33 +127,6 @@
 
 	100% {
 		opacity: 1;
-	}
-}
-
-.cardBack {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: transform 1.2s ease;
-	transform: rotateY(180deg) perspective(1000px);
-	transform-style: preserve-3d;
-	@include container;
-
-	.buttonTrash {
-		@include buttonTrash;
-		
-	}
-
-	.text {
-		@include text;
-		.heading {
-			display: none;
-			opacity: 0;
-		}
-
-		.answer {
-			transform: rotateY(180deg);
-		}
 	}
 }
 
@@ -232,4 +237,34 @@ textarea:focus {
 	color: red;
 	font-size: 12px;
 	top: 10px;
+}
+
+.actionBtnHide {
+	animation: actionBtnShow 1.5s ease-in-out forwards;
+}
+
+.actionBtnShow {
+	animation: actionBtnShow 1.5s ease-in-out forwards;
+}
+
+.testttt {
+	opacity: 1;
+}
+
+@keyframes actionBtnShow {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes actionBtnHide {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
