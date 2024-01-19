@@ -1,229 +1,270 @@
 @mixin container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 343px;
-  min-height: 188px;
-  margin-bottom: -8px;
-  border-radius: 15px;
-  background: var(--White, #fff);
-  border: 1px solid var(--Border, #ebebec);
-  overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 343px;
+	min-height: 188px;
+	margin-bottom: -8px;
+	border-radius: 15px;
+	background: var(--White, #fff);
+	border: 1px solid var(--Border, #ebebec);
+	overflow: hidden;
 }
 
 @mixin buttonTrash {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	cursor: pointer;
+	background-color: #fff;
+	z-index: 0;
 }
 
 @mixin text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  word-wrap: break-word;
-  word-break: break-all;
-  padding: 18px;
-  margin-top: 14px;
-  height: 100%;
-  text-align: center;
-  word-wrap: break-word;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	word-wrap: break-word;
+	word-break: break-all;
+	padding: 18px;
+	margin-top: 14px;
+	height: 100%;
+	text-align: center;
+	word-wrap: break-word;
 }
 
 .cardFront {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(0) perspective(1000px);
-  transition: transform 1.2s ease;
-  transform-style: preserve-3d;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: rotate(0) perspective(1000px);
+	transition: transform 1.2s ease;
+	transform-style: preserve-3d;
+	@include container;
 
-  @include container;
-  .buttonTrash {
-    @include buttonTrash;
-  }
+	.actionBtnFront {
+		@include buttonTrash;
+		opacity: 1;
+	}
+	.actionBtnBack {
+		opacity: 0;
+		@include buttonTrash;
+	}
 
-  .text {
-    @include text;
+	.text {
+		@include text;
 
-    .heading {
-      opacity: 1;
-      display: block;
-    }
+		.heading {
+			opacity: 1;
+			display: block;
+		}
 
-    .answer {
-      backface-visibility: hidden;
-      display: none;
-      opacity: 1;
-    }
-  }
-}
-
-.fade {
-  animation: answer 1.5s ease-in-out forwards;
-}
-
-.showText {
-  animation: showText 1.5s ease-in-out forwards;
-}
-
-@keyframes answer {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes showText {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+		.answer {
+			backface-visibility: hidden;
+			display: none;
+			opacity: 1;
+		}
+	}
 }
 
 .cardBack {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 1.2s ease;
-  transform: rotateY(180deg) perspective(1000px);
-  transform-style: preserve-3d;
-  @include container;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 1.2s ease;
+	transform: rotateY(180deg) perspective(1000px);
+	transform-style: preserve-3d;
+	@include container;
 
-  .buttonTrash {
-    @include buttonTrash;
-    transform: rotateY(180deg) translateX(300px);
-  }
+	.actionBtnFront {
+		opacity: 1;
+		@include buttonTrash;
+		transform: rotateY(-180deg);
+		left: -300px;
+		top: 0;
+	}
 
-  .text {
-    @include text;
-    .heading {
-      display: none;
-      opacity: 0;
-    }
+	.text {
+		@include text;
+		.heading {
+			display: none;
+			opacity: 0;
+		}
 
-    .answer {
-      transform: rotateY(180deg);
-    }
-  }
+		.answer {
+			transform: rotateY(180deg);
+		}
+	}
+}
+
+.fade {
+	animation: answer 1.5s ease-in-out forwards;
+}
+
+.showText {
+	animation: showText 1.5s ease-in-out forwards;
+}
+
+@keyframes answer {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes showText {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 .rectangle {
-  @include container;
+	@include container;
 }
 
 .buttonTrash {
-  @include buttonTrash;
+	@include buttonTrash;
 }
 
 .formContainerSingle {
-  margin-top: 50px;
-  margin-bottom: 88px;
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  flex-direction: column;
-  text-align: left;
+	margin-top: 50px;
+	margin-bottom: 88px;
+	display: flex;
+	padding: 12px;
+	gap: 8px;
+	flex-direction: column;
+	text-align: left;
 }
 .formContainerDouble {
-  margin-top: 28px;
-  margin-bottom: 87px;
-  display: flex;
-  padding: 12px;
-  gap: 8px;
-  flex-direction: column;
-  text-align: left;
+	margin-top: 28px;
+	margin-bottom: 87px;
+	display: flex;
+	padding: 12px;
+	gap: 8px;
+	flex-direction: column;
+	text-align: left;
 }
 
 textarea {
-  width: 315px;
-  padding-left: 12px;
-  min-height: 40px;
-  padding-right: 10px;
-  padding-block: 10px;
-  color: var(--accent);
-  border: 1px solid var(--Border, #ebebec);
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 500;
-  resize: none;
-  overflow-y: hidden;
-  word-break: break-all;
+	width: 315px;
+	padding-left: 12px;
+	min-height: 40px;
+	padding-right: 10px;
+	padding-block: 10px;
+	color: var(--accent);
+	border: 1px solid var(--Border, #ebebec);
+	font-family: inherit;
+	font-size: 16px;
+	font-weight: 500;
+	resize: none;
+	overflow-y: hidden;
+	word-break: break-all;
 }
 
 textarea:focus {
-  caret-color: var(--accent);
-  outline: 2px solid var(--accent);
+	caret-color: var(--accent);
+	outline: 2px solid var(--accent);
 }
 
 .buttons {
-  position: absolute;
-  display: flex;
-  justify-content: end;
-  align-content: end;
-  bottom: 14px;
-  right: 14px;
+	position: absolute;
+	display: flex;
+	justify-content: end;
+	align-content: end;
+	bottom: 14px;
+	right: 14px;
 }
 
 .buttonCardOne,
 .buttonCardSecond {
-  display: flex;
-  width: 110px;
-  padding: 10px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 22px;
-  cursor: pointer;
-  border: none;
+	font-size: 14px;
+	font-family: Lexend;
+	display: flex;
+	width: 110px;
+	padding: 10px 12px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border-radius: 22px;
+	cursor: pointer;
+	border: none;
 }
 
 .buttonCardOne {
-  background: var(--White, #fff);
-  color: var(--accent);
+	background: var(--White, #fff);
+	color: var(--accent);
 }
 
 .buttonCardSecond {
-  color: var(--white);
-  background: var(--accent);
+	color: var(--white);
+	background: var(--accent);
 }
 
 .editState {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 28px;
+	margin-top: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 28px;
 }
 
 .headingTitle {
-  top: 28px;
-  left: 26px;
-  word-break: break-all;
-  color: var(--Accent, #161616);
-  font-family: Lexend;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
+	top: 28px;
+	left: 26px;
+	word-break: break-all;
+	color: var(--Accent, #161616);
+	font-family: Lexend;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
 }
 
 .errorParaph {
-  position: absolute;
-  color: red;
-  font-size: 12px;
-  top: 10px;
+	position: absolute;
+	color: red;
+	font-size: 12px;
+	top: 10px;
+}
+
+.actionBtnHide {
+	animation: actionBtnShow 1.5s ease-in-out forwards;
+}
+
+.actionBtnShow {
+	animation: actionBtnShow 1.5s ease-in-out forwards;
+}
+
+.testttt {
+	opacity: 1;
+}
+
+@keyframes actionBtnShow {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes actionBtnHide {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
