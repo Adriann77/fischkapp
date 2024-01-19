@@ -1,39 +1,40 @@
-import React, { useEffect, useRef } from "react";
-import styles from "../CssModule/NewCard.module.scss";
-import { Trash } from "../../../icons/Trash";
+import React, { useEffect, useRef } from 'react';
+import styles from '../CssModule/NewCard.module.scss';
+import { Trash } from '../../../icons/Trash';
 
 interface Props {
-  editCard: () => void;
-  inputValue: string;
-  handleAnswerInputChange: (
-    event: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => void;
-  answerInputValue: string;
-  cancelChanges: () => void;
-  showError: boolean;
-  submitChanges: () => void;
-  deleteCard: () => void;
+	editCard: () => void;
+	inputValue: string;
+	handleAnswerInputChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+	answerInputValue: string;
+	cancelChanges: () => void;
+	showError: boolean;
+	submitChanges: () => void;
+	deleteCard: () => void;
 }
 
 export const CardEdit = ({
-  inputValue,
-  handleAnswerInputChange,
-  answerInputValue,
-  cancelChanges,
-  submitChanges,
-  showError,
-  deleteCard,
+	inputValue,
+	handleAnswerInputChange,
+	answerInputValue,
+	cancelChanges,
+	submitChanges,
+	showError,
+	deleteCard,
 }: Props) => {
-  const answerInputRef = useRef<HTMLTextAreaElement | null>(null);
+	const answerInputRef = useRef<HTMLTextAreaElement | null>(null);
 
-  useEffect(() => {
-    if (answerInputRef.current) {
-      answerInputRef.current.style.height = "auto";
-      answerInputRef.current.style.height = `${answerInputRef.current.scrollHeight}px`;
-    }
-  }, [answerInputValue]);
+	useEffect(() => {
+		if (answerInputRef.current) {
+			answerInputRef.current.style.height = 'auto';
+			answerInputRef.current.style.height = `${answerInputRef.current.scrollHeight}px`;
+			answerInputRef.current.selectionStart = inputValue.length;
+			answerInputRef.current.selectionEnd = inputValue.length;
+			answerInputRef.current.focus();
+		}
+	}, [answerInputValue]);
 
-  return (
+	return (
 		<div className={styles.rectangle}>
 			<button
 				data-testid='Delete'
